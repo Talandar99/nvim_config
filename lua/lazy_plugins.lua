@@ -20,6 +20,8 @@ require("lazy").setup({
 	require("plugins.todo_comments"),
 	require("plugins.mini"),
 	require("plugins.nvim-treesitter"),
+	--new plugins
+	require("plugins.orgmode"),
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the

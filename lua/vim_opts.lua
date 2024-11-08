@@ -1,4 +1,5 @@
 --TODO: add line wrap
+vim.opt.wrap = false
 --
 -- Set <space> as the leader key
 vim.g.mapleader = " "

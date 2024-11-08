@@ -1,0 +1,3 @@
+#+title: nvim_config
+New neovim configuration based on lazy.nvim 
+
