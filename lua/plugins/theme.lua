@@ -15,6 +15,15 @@ return {
 		-- You can configure highlights by doing something like:
 		vim.cmd.hi("Comment gui=none")
 	end,
+	opts = {
+		on_colors = function(colors)
+			colors.border = "#565f89"
+		end,
+		transparent = true, -- Enable this to disable setting the background color
+
+		transparent_sidebar = true,
+		terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+	},
 }
 --return {
 --	"tiagovla/tokyodark.nvim",

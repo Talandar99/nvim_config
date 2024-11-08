@@ -5,6 +5,7 @@
 --  To update plugins you can run
 --    :Lazy update
 require("lazy").setup({
+
 	-- TODO:
 	-- orgmode support
 	require("plugins.theme"),
@@ -22,6 +23,10 @@ require("lazy").setup({
 	require("plugins.nvim-treesitter"),
 	--new plugins
 	require("plugins.orgmode"),
+	require("plugins.oil"),
+	require("plugins.autopairs"),
+	require("plugins.indent-blankline"),
+	require("plugins.neo-tree"),
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -41,5 +46,6 @@ require("lazy").setup({
 			task = "📌",
 			lazy = "💤 ",
 		},
+		border = "rounded",
 	},
 })
