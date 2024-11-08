@@ -17,4 +17,23 @@ return {
 			},
 		},
 	},
+
+	dependencies = {
+		{
+			"nvim-orgmode/org-bullets.nvim",
+			opts = {
+				concealcursor = false, -- If false then when the cursor is on a line underlying characters are visible
+				symbols = {
+					-- list symbol
+					list = "•",
+					-- or false to disable the symbol. Works for all symbols
+					checkboxes = {
+						half = { "-", "OrgTSCheckboxHalfChecked" },
+						done = { "X", "OrgDone" },
+						todo = { " ", "OrgTODO" },
+					},
+				},
+			},
+		},
+	},
 }

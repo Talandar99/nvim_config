@@ -40,3 +40,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
 vim.keymap.set("n", "<leader>q", "<cmd>:q<CR>", { noremap = true, desc = "quit focused element" })
 -- open_configs
 vim.keymap.set("n", "<leader>|", "<cmd>:e ~/.config/nvim<CR>", { noremap = true, desc = "Open Neovim Configuration" })
+-- open notes
+vim.keymap.set("n", "<leader>on", "<cmd>:e ~/workspace/notes<CR>", { noremap = true, desc = "orgmode notes" })
+-- open vim fugitive
+vim.keymap.set("n", "<leader>gg", "<cmd>:0G<CR>", { noremap = true, desc = "open vim fugitive" })
