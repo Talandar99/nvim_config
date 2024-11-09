@@ -16,6 +16,26 @@ return { -- Useful plugin to show you pending keybinds.
 	"folke/which-key.nvim",
 	event = "VimEnter", -- Sets the loading event to 'VimEnter'
 	opts = {
+
+		win = {
+			-- don't allow the popup to overlap with the cursor
+			no_overlap = true,
+			-- width = 1,
+			-- height = { min = 4, max = 25 },
+			-- col = 0,
+			-- row = math.huge,
+			border = "rounded",
+			padding = { 1, 2 }, -- extra window padding [top/bottom, right/left]
+			title = true,
+			title_pos = "center",
+			zindex = 1000,
+			-- Additional vim.wo and vim.bo options
+			bo = {},
+			wo = {
+				-- winblend = 10, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+			},
+		},
+		delay = 1000,
 		icons = {
 			-- set icon mappings to true if you have a Nerd Font
 			mappings = vim.g.have_nerd_font,
@@ -55,13 +75,15 @@ return { -- Useful plugin to show you pending keybinds.
 
 		-- Document existing key chains
 		spec = {
-			{ "<leader>c", group = "[C]ode", mode = { "n", "x" } },
-			{ "<leader>d", group = "[D]ocument" },
-			{ "<leader>r", group = "[R]ename" },
-			{ "<leader>s", group = "[S]earch" },
-			{ "<leader>w", group = "[W]orkspace" },
-			{ "<leader>t", group = "[T]oggle" },
-			{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+			--{ "<leader>c", group = "[C]ode", mode = { "n", "x" } },
+			--{ "<leader>d", group = "[D]ocument" },
+			--{ "<leader>r", group = "[R]ename" },
+			--{ "<leader>s", group = "[S]earch" },
+			--{ "<leader>w", group = "[W]orkspace" },
+			--{ "<leader>t", group = "[T]oggle" },
+			--{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+			{ "<leader>o", group = "[O]rgmode", mode = { "n" } },
+			{ "<leader>g", group = "[G]it", mode = { "n" } },
 		},
 	},
 }

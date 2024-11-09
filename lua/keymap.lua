@@ -24,7 +24,7 @@ vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.api.nvim_del_keymap("n", "<C-l>")
+-- vim.api.nvim_del_keymap("n", "<C-l>")
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { noremap = true, desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { noremap = true, desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { noremap = true, desc = "Move focus to the lower window" })
@@ -43,4 +43,7 @@ vim.keymap.set("n", "<leader>|", "<cmd>:e ~/.config/nvim<CR>", { noremap = true,
 -- open notes
 vim.keymap.set("n", "<leader>on", "<cmd>:e ~/workspace/notes<CR>", { noremap = true, desc = "orgmode notes" })
 -- open vim fugitive
-vim.keymap.set("n", "<leader>gg", "<cmd>:0G<CR>", { noremap = true, desc = "open vim fugitive" })
+vim.keymap.set("n", "<leader>gg", "<cmd>:0G<CR>", { noremap = true, desc = "[G]it Menu" })
+vim.keymap.set("n", "<leader>gl", "<cmd>:Git pull<CR>", { noremap = true, desc = "[G]it Pu[l]l" })
+vim.keymap.set("n", "<leader>gs", "<cmd>:Git push<CR>", { noremap = true, desc = "[G]it Pu[s]h" })
+vim.keymap.set("n", "<leader>gf", "<cmd>:Git fetch<CR>", { noremap = true, desc = "[G]it [f]etch" })

@@ -15,6 +15,17 @@ return {
 		-- You can configure highlights by doing something like:
 		vim.cmd.hi("Comment gui=none")
 		vim.cmd.hi("Folded guibg=none")
+
+		local _border = "single"
+		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+			border = _border,
+		})
+		vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+			border = _border,
+		})
+		vim.diagnostic.config({
+			float = { border = _border },
+		})
 	end,
 	opts = {
 		on_colors = function(colors)
@@ -22,6 +33,7 @@ return {
 		end,
 		transparent = true, -- Enable this to disable setting the background color
 
+		lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
 		transparent_sidebar = true,
 		terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
 	},
