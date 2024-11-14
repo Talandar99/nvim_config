@@ -52,6 +52,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.api.nvim_create_autocmd("BufRead", {
 	pattern = "*.org",
 	callback = function()
+        vim.api.nvim_command("set nofoldenable")
 		vim.api.nvim_command("IBLDisable")
 		vim.opt.conceallevel = 2
 	end,
