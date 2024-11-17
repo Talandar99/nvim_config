@@ -18,6 +18,8 @@ return {
 			"vim",
 			"vimdoc",
 			"json",
+			"python",
+			"nginx"
 		},
 
 		ignore_install = { "org" },
