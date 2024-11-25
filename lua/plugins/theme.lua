@@ -32,7 +32,6 @@ return {
 			colors.border = "#565f89"
 		end,
 		transparent = true, -- Enable this to disable setting the background color
-
 		lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
 		transparent_sidebar = true,
 		terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim

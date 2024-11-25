@@ -33,11 +33,14 @@ return { -- Autocompletion
 		--  into multiple repos for maintenance purposes.
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-buffer", -- geting completion from current buffer (everything you type)
 	},
 	config = function()
 		-- See `:help cmp`
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
+		local cmp_buffer = require("cmp_buffer")
+
 		luasnip.config.setup({})
 
 		cmp.setup({
@@ -111,6 +114,7 @@ return { -- Autocompletion
 				{ name = "luasnip" },
 				{ name = "path" },
 				{ name = "orgmode" },
+				{ name = "buffer" }, -- geting completion from current buffer (everything you type)
 			},
 
 			window = {

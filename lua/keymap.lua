@@ -37,7 +37,7 @@ vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" }
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
 -- exit
-vim.keymap.set("n", "<leader>q", "<cmd>:q<CR>", { noremap = true, desc = "quit focused element" })
+vim.keymap.set("n", "<leader>q", "<cmd>:q<CR>", { noremap = true, desc = "[Q]uit Focused Element" })
 -- open_configs
 vim.keymap.set("n", "<leader>|", "<cmd>:e ~/.config/nvim<CR>", { noremap = true, desc = "Open Neovim Configuration" })
 -- open notes
@@ -47,3 +47,6 @@ vim.keymap.set("n", "<leader>gg", "<cmd>:0G<CR>", { noremap = true, desc = "[G]i
 vim.keymap.set("n", "<leader>gl", "<cmd>:Git pull<CR>", { noremap = true, desc = "[G]it Pu[l]l" })
 vim.keymap.set("n", "<leader>gs", "<cmd>:Git push<CR>", { noremap = true, desc = "[G]it Pu[s]h" })
 vim.keymap.set("n", "<leader>gf", "<cmd>:Git fetch<CR>", { noremap = true, desc = "[G]it [f]etch" })
+vim.keymap.set("n", "<leader>grh", ":Git reset --hard", { noremap = true, desc = "[G]it [R]eset [H]ard" })
+vim.keymap.set("n", "<leader>gc", ":Git checkout -b ", { noremap = true, desc = "[G]it [C]heckout" })
+vim.keymap.set("n", "<leader>ga", ":Git commit --amend", { noremap = true, desc = "[G]it Commit [A]mend" })

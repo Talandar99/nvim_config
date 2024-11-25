@@ -28,11 +28,13 @@ require("lazy").setup({
 	require("plugins.indent-blankline"),
 	require("plugins.neo-tree"),
 	require("plugins.vim-fugitive"),
+	require("plugins.vim-surround"),
 	require("plugins.harpoon"),
+	require("plugins.treesitter-context"),
 }, {
-      git = {
-    timeout = 300, -- kill processes that take more than 5 minutes
-  },
+	git = {
+		timeout = 300, -- kill processes that take more than 5 minutes
+	},
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
 		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
