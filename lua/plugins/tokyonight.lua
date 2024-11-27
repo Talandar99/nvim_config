@@ -16,7 +16,9 @@ return {
 		vim.cmd.hi("Comment gui=none")
 		vim.cmd.hi("Folded guibg=none")
 
-		local _border = "single"
+		--lsp windows borders
+		--local _border = "single"
+		local _border = "rounded"
 		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 			border = _border,
 		})
@@ -35,17 +37,13 @@ return {
 		lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
 		transparent_sidebar = true,
 		terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+		styles = {
+			comments = { italic = true },
+			keywords = { italic = true },
+			functions = {},
+			variables = {},
+			sidebars = "transparent",
+			floats = "transparent",
+		},
 	},
 }
---return {
---	"tiagovla/tokyodark.nvim",
---	opts = {
---		-- custom options here
---	},
---	config = function(_, opts)
---		require("tokyodark").setup(opts) -- calling setup is optional
---		vim.cmd.hi("Comment gui=none")
---		vim.cmd.colorscheme("tokyodark")
---	end,
---	priority = 1000, -- Make sure to load this before all the other start plugins.
---}

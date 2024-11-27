@@ -1,4 +1,3 @@
---TODO: add line wrap
 vim.opt.wrap = false
 --
 -- Set <space> as the leader key
@@ -50,7 +49,6 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
-vim.g.tokyonight_colors = { border = "orange" }
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -61,4 +59,3 @@ vim.opt.undodir = { vim.fn.expand("~") .. "/.local/.nvim-undo//" }
 -- i do not need a backup
 vim.opt.backup = false
 vim.opt.writebackup = false
-

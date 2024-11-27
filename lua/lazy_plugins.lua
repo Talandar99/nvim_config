@@ -5,10 +5,7 @@
 --  To update plugins you can run
 --    :Lazy update
 require("lazy").setup({
-
-	-- TODO:
-	-- orgmode support
-	require("plugins.theme"),
+	require("plugins.tokyonight"),
 	require("plugins.gitsigns"),
 	require("plugins.which-key"),
 	require("plugins.telescope"),
@@ -30,7 +27,6 @@ require("lazy").setup({
 	require("plugins.vim-fugitive"),
 	require("plugins.vim-surround"),
 	require("plugins.harpoon"),
-	require("plugins.treesitter-context"),
 }, {
 	git = {
 		timeout = 300, -- kill processes that take more than 5 minutes
