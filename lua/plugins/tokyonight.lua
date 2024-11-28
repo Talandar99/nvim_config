@@ -42,8 +42,8 @@ return {
 			keywords = { italic = true },
 			functions = {},
 			variables = {},
-			sidebars = "transparent",
-			floats = "transparent",
+			--sidebars = "transparent",
+			--floats = "transparent",
 		},
 	},
 }
