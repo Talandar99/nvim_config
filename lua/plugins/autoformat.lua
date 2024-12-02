@@ -39,4 +39,6 @@ return { -- Autoformat
 			-- javascript = { "prettierd", "prettier", stop_after_first = true },
 		},
 	},
+
+	dependencies = { "rhysd/vim-clang-format" },
 }

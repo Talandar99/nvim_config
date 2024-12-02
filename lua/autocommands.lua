@@ -40,12 +40,12 @@ vim.api.nvim_create_autocmd("BufRead", {
 	end,
 })
 --automaticly format file using ClangFormat if it's C file
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*.c",
-	callback = function()
-		vim.api.nvim_command("ClangFormat")
-	end,
-})
+--vim.api.nvim_create_autocmd("BufWritePre", {
+--	pattern = "*.c",
+--	callback = function()
+--		vim.api.nvim_command("ClangFormat")
+--	end,
+--})
 
 --automaticly disable indent_blankline if .org
 --automaticly enable conceallevel if .org
@@ -70,5 +70,12 @@ vim.api.nvim_create_autocmd("BufRead", {
 	pattern = "*.zs",
 	callback = function()
 		vim.api.nvim_command("set filetype=ts")
+	end,
+})
+--automaticly format file using ClangFormat if it's C file
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*.c",
+	callback = function()
+		vim.api.nvim_command("ClangFormat")
 	end,
 })

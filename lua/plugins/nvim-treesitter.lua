@@ -19,7 +19,9 @@ return {
 			"vimdoc",
 			"json",
 			"python",
-			"nginx"
+			"make",
+			"typescript",
+			"nginx",
 		},
 
 		ignore_install = { "org" },
