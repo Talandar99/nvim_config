@@ -59,3 +59,5 @@ vim.opt.undodir = { vim.fn.expand("~") .. "/.local/.nvim-undo//" }
 -- i do not need a backup
 vim.opt.backup = false
 vim.opt.writebackup = false
+-- dadbod-ui
+vim.g.db_ui_force_echo_notifications = 1

@@ -50,3 +50,4 @@ vim.keymap.set("n", "<leader>gf", "<cmd>:Git fetch<CR>", { noremap = true, desc 
 vim.keymap.set("n", "<leader>grh", ":Git reset --hard", { noremap = true, desc = "[G]it [R]eset [H]ard" })
 vim.keymap.set("n", "<leader>gc", ":Git checkout -b ", { noremap = true, desc = "[G]it [C]heckout" })
 vim.keymap.set("n", "<leader>ga", ":Git commit --amend", { noremap = true, desc = "[G]it Commit [A]mend" })
+vim.keymap.set("n", "<leader>D", ":DBUI<CR>", { noremap = true, desc = "[D]ata[Base] UI" })

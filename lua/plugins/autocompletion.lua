@@ -42,7 +42,6 @@ return { -- Autocompletion
 		local cmp_buffer = require("cmp_buffer")
 
 		luasnip.config.setup({})
-
 		cmp.setup({
 			snippet = {
 				expand = function(args)
@@ -120,6 +119,14 @@ return { -- Autocompletion
 			window = {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
+			},
+		})
+
+		-- Setup up vim-dadbod
+		cmp.setup.filetype({ "sql" }, {
+			sources = {
+				{ name = "vim-dadbod-completion" },
+				{ name = "buffer" },
 			},
 		})
 	end,
