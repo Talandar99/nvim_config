@@ -61,3 +61,5 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 -- dadbod-ui
 vim.g.db_ui_force_echo_notifications = 1
+-- always statusline on botttom
+vim.opt.laststatus = 3
