@@ -39,13 +39,6 @@ vim.api.nvim_create_autocmd("BufRead", {
 		end)
 	end,
 })
---automaticly format file using ClangFormat if it's C file
---vim.api.nvim_create_autocmd("BufWritePre", {
---	pattern = "*.c",
---	callback = function()
---		vim.api.nvim_command("ClangFormat")
---	end,
---})
 
 --automaticly disable indent_blankline if .org
 --automaticly enable conceallevel if .org
@@ -77,5 +70,30 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*.c",
 	callback = function()
 		vim.api.nvim_command("ClangFormat")
+	end,
+})
+
+--if file is sqlite database connect to it
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*.sqlite",
+	callback = function()
+		if vim.g.dbs == nil then
+			local buff_name = vim.api.nvim_buf_get_name(0)
+			local path = "sqlite:" .. buff_name
+			vim.g.dbs = {
+				{
+					name = path,
+					url = function()
+						return path
+					end,
+				},
+			}
+			vim.api.nvim_command("DBUIFindBuffer")
+			local window_id = vim.api.nvim_get_current_win()
+			vim.api.nvim_win_close(window_id, true)
+			--vim.api.nvim_command("bd#")
+		else
+			--vim.api.nvim_command("DBUI")
+		end
 	end,
 })

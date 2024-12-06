@@ -10,6 +10,20 @@ return {
 		"DBUIAddConnection",
 		"DBUIFindBuffer",
 	},
+	config = function()
+		--resizing output window
+		vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+			pattern = { "*.dbout" },
+			callback = function()
+				vim.api.nvim_exec2(
+					[[
+          exe ':resize 25'
+          ]],
+					{}
+				)
+			end,
+		})
+	end,
 	init = function()
 		-- Your DBUI configuration
 		vim.g.db_ui_use_nerd_fonts = 1
