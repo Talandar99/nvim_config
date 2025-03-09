@@ -7,7 +7,7 @@ return {
 		org_agenda_files = { "~/workspace/notes/*" },
 		org_default_notes_file = "~/workspace/notes/0001_todo.org",
 		org_agenda_span = "month", --default time span that is showed when open agenda
-		win_split_mode = { "float", 0.8 },
+		win_split_mode = { "float", 0.9 },
 		win_border = "rounded",
 		org_hide_emphasis_markers = true, -- hide things like bold,italic etc
 		org_time_stamp_rounding_minutes = 1,
