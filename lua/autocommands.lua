@@ -97,3 +97,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		end
 	end,
 })
+--don't conceallevel json
+vim.api.nvim_create_autocmd("BufRead", {
+	pattern = "*.json",
+	callback = function()
+		vim.api.nvim_command("set conceallevel=0")
+	end,
+})
