@@ -144,6 +144,8 @@ return {
 				map("<leader>ca", "<cmd>:Lspsaga code_action<CR>", "[C]ode [A]ction", { "n", "x" })
 				map("<leader>co", "<cmd>:Lspsaga outgoing_calls<CR>", "[C]ode [O]utgoing Calls", { "n", "x" })
 				map("<leader>ci", "<cmd>:Lspsaga incoming_calls<CR>", "[C]ode [I]ncoming Calls", { "n", "x" })
+				map("<leader>cn", "<cmd>:Lspsaga diagnostic_jump_next<CR>", "[C]ode diagnostic [N]ext", { "n", "x" })
+				map("<leader>cl", "<cmd>:Lspsaga diagnostic_jump_prev<CR>", "[C]ode diagnostic [L]ast", { "n", "x" })
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 				--if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
 				--local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })

@@ -1,4 +1,6 @@
 --some heretic stuff
+--
+
 return {
 	"nvim-orgmode/orgmode",
 	opts = {
@@ -35,5 +37,6 @@ return {
 				},
 			},
 		},
+
 	},
 }
