@@ -29,6 +29,7 @@ require("lazy").setup({
 	require("plugins.harpoon"),
 	require("plugins.vim-dadbod-ui"),
 	require("plugins.flutter"),
+	require("plugins.nvim-soil"),
 }, {
 	git = {
 		timeout = 300, -- kill processes that take more than 5 minutes

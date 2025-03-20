@@ -104,3 +104,10 @@ vim.api.nvim_create_autocmd("BufRead", {
 		vim.api.nvim_command("set conceallevel=0")
 	end,
 })
+--add soil autocommand when editing plantuml
+vim.api.nvim_create_autocmd("BufRead", {
+	pattern = "*.plantuml",
+	callback = function()
+		vim.keymap.set({ "n", "x" }, "<leader>cs", "<cmd>Soil<CR>", { noremap = true, desc = "[C]ode run [S]oil" })
+	end,
+})
