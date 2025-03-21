@@ -14,7 +14,7 @@ return {
 		org_todo_keywords = { "TODO", "|", "DONE" },
 		org_todo_keyword_faces = {
 			DONE = ":foreground #449dab :weight bold",
-			TODO = ":foreground #ff546e :weight bold",
+			TODO = ":foreground #db4b4b :weight bold",
 		},
 		org_capture_templates = {
 			c = {
