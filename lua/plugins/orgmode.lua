@@ -11,6 +11,11 @@ return {
 		win_border = "rounded",
 		org_hide_emphasis_markers = true, -- hide things like bold,italic etc
 		org_time_stamp_rounding_minutes = 1,
+		org_todo_keywords = { "TODO", "|", "DONE" },
+		org_todo_keyword_faces = {
+			DONE = ":foreground #449dab :weight bold",
+			TODO = ":foreground #f7768e :weight bold",
+		},
 		org_capture_templates = {
 			c = {
 				description = "Calendar event",
@@ -37,6 +42,5 @@ return {
 				},
 			},
 		},
-
 	},
 }
