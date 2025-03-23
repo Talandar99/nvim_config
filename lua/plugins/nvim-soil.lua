@@ -4,7 +4,7 @@ return {
 	dependencies = { "javiorfo/nvim-nyctophilia" },
 
 	lazy = true,
-	ft = "plantuml",
+	ft = { "plantuml", "puml" },
 	opts = {
 		-- If you want to change default configurations
 		-- This option closes the image viewer and reopen the image generated
