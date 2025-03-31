@@ -20,6 +20,7 @@ require("lazy").setup({
 	require("plugins.nvim-treesitter"),
 	--new plugins
 	require("plugins.orgmode"),
+	require("plugins.render-markdown"),
 	require("plugins.oil"),
 	require("plugins.autopairs"),
 	require("plugins.indent-blankline"),
