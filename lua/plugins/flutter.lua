@@ -7,6 +7,6 @@ return {
 	},
 	config = true,
 	opts = {
-		lsp = { settings = { lineLength = 100 } },
+		lsp = { settings = { lineLength = 80 } },
 	},
 }
