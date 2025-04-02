@@ -52,6 +52,9 @@ vim.keymap.set("n", "<leader>gc", ":Git checkout -b ", { noremap = true, desc = 
 vim.keymap.set("n", "<leader>ga", ":Git commit --amend", { noremap = true, desc = "[G]it Commit [A]mend" })
 vim.keymap.set("n", "<leader>D", ":DBUI<CR>", { noremap = true, desc = "[D]ata[Base] UI" })
 
+vim.keymap.set("n", "gp", function()
+	require("treesitter-context").go_to_context(vim.v.count1)
+end, { silent = true, desc = "[G]o to [Parent] context" })
 --copy path command
 vim.api.nvim_create_user_command("CopyPath", function()
 	vim.fn.setreg("+", vim.fn.expand("%:p"))

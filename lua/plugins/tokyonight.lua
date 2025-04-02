@@ -15,6 +15,9 @@ return {
 		-- You can configure highlights by doing something like:
 		vim.cmd.hi("Comment gui=none")
 		vim.cmd.hi("Folded guibg=none")
+		vim.cmd.hi("TreesitterContextLineNumber gui=bold guifg=#82aaff")
+		vim.cmd.hi("TreesitterContextSeparator gui=bold guifg=#82aaff")
+		vim.cmd.hi("TreesitterContext guibg=none")
 
 		--lsp windows borders
 		--local _border = "single"
