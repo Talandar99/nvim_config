@@ -22,6 +22,8 @@ return {
 			"make",
 			"typescript",
 			"nginx",
+			"sql",
+			"java",
 		},
 
 		ignore_install = { "org" },

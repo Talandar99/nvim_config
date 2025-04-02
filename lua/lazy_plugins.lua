@@ -18,9 +18,10 @@ require("lazy").setup({
 	require("plugins.todo_comments"),
 	require("plugins.mini"),
 	require("plugins.nvim-treesitter"),
+	{ "nvim-treesitter/nvim-treesitter-context" },
 	--new plugins
 	require("plugins.orgmode"),
-	require("plugins.render-markdown"),
+	require("plugins.render-markdown"), -- TODO fix
 	require("plugins.oil"),
 	require("plugins.autopairs"),
 	require("plugins.indent-blankline"),
