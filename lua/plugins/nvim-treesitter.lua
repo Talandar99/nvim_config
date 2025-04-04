@@ -24,6 +24,8 @@ return {
 			"nginx",
 			"sql",
 			"java",
+			"dart",
+			"rust",
 		},
 
 		ignore_install = { "org" },
