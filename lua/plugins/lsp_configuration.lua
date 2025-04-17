@@ -39,6 +39,7 @@ return {
 		},
 		{
 			"nvimdev/lspsaga.nvim",
+			commit = "4b0f0e2",
 			config = function()
 				require("lspsaga").setup({
 					symbol_in_winbar = {

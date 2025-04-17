@@ -60,3 +60,10 @@ vim.api.nvim_create_user_command("CopyPath", function()
 	vim.fn.setreg("+", vim.fn.expand("%:p"))
 end, {})
 vim.keymap.set("n", "<leader>y", ":CopyPath<CR>", { noremap = true, desc = "[y]ank current path" })
+
+vim.keymap.set(
+	"n",
+	"<leader>lp",
+	"<cmd>:setfiletype python<CR><cmd>:LspStart pylsp<CR>",
+	{ noremap = true, desc = "[L]anguage [P]ython " }
+)
