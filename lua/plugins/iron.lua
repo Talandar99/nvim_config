@@ -9,6 +9,10 @@ return {
 			config = {
 				scratch_repl = true,
 				repl_definition = {
+					javascript = {
+						command = { "mongosh" },
+						block_dividers = { "// %%", "//%%" },
+					},
 					sh = {
 						command = { "bash" },
 					},
@@ -21,27 +25,27 @@ return {
 				repl_filetype = function(bufnr, ft)
 					return ft
 				end,
-				repl_open_cmd = view.right(90),
+				repl_open_cmd = view.right(80),
 			},
 			keymaps = {
-				toggle_repl = "<space>rr",
-				restart_repl = "<space>rR",
-				send_motion = "<space>sc",
-				visual_send = "<space>sc",
-				send_file = "<space>sf",
-				send_line = "<space>sl",
-				send_paragraph = "<space>sp",
-				send_until_cursor = "<space>su",
-				send_mark = "<space>sm",
-				send_code_block = "<space>sb",
-				send_code_block_and_move = "<space>sn",
-				mark_motion = "<space>mc",
-				mark_visual = "<space>mc",
-				remove_mark = "<space>md",
-				cr = "<space>s<cr>",
-				interrupt = "<space>s<space>",
-				exit = "<space>sq",
-				clear = "<space>cl",
+				toggle_repl = "<space>ir",
+				restart_repl = "<space>iR",
+				send_motion = "<space>ic",
+				visual_send = "<space>ic",
+				send_file = "<space>if",
+				send_line = "<space>il",
+				send_paragraph = "<space>ip",
+				send_until_cursor = "<space>iu",
+				send_mark = "<space>im",
+				send_code_block = "<space>ib",
+				send_code_block_and_move = "<space>in",
+				mark_motion = "<space>imc",
+				mark_visual = "<space>imc",
+				remove_mark = "<space>imd",
+				cr = "<space>is<cr>",
+				interrupt = "<space>is<space>",
+				exit = "<space>isq",
+				clear = "<space>i<cr>",
 			},
 			highlight = {
 				italic = true,
@@ -49,7 +53,7 @@ return {
 			ignore_blank_lines = true,
 		})
 
-		vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
-		vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")
+		vim.keymap.set("n", "<space>if", "<cmd>IronFocus<cr>")
+		vim.keymap.set("n", "<space>ih", "<cmd>IronHide<cr>")
 	end,
 }
