@@ -69,7 +69,10 @@ vim.api.nvim_create_autocmd("BufRead", {
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*.c",
 	callback = function()
-		vim.api.nvim_command("ClangFormat")
+		-- Check if the ClangFormat command exists
+		if vim.fn.exists(":ClangFormat") == 2 then
+			vim.cmd("ClangFormat")
+		end
 	end,
 })
 
@@ -107,6 +110,13 @@ vim.api.nvim_create_autocmd("BufRead", {
 --add soil autocommand when editing plantuml
 vim.api.nvim_create_autocmd("BufRead", {
 	pattern = "*.plantuml",
+	callback = function()
+		vim.keymap.set({ "n", "x" }, "<leader>cs", "<cmd>Soil<CR>", { noremap = true, desc = "[C]ode run [S]oil" })
+	end,
+})
+--add soil autocommand when editing plantuml
+vim.api.nvim_create_autocmd("BufRead", {
+	pattern = "*.puml",
 	callback = function()
 		vim.keymap.set({ "n", "x" }, "<leader>cs", "<cmd>Soil<CR>", { noremap = true, desc = "[C]ode run [S]oil" })
 	end,
