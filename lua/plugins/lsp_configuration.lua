@@ -247,6 +247,23 @@ return {
 					},
 				},
 			},
+			robotframework_ls = {
+				-- will use venv packages if venv is activated
+				cmd = vim.env.VIRTUAL_ENV and {
+					vim.env.VIRTUAL_ENV .. "/bin/robotframework_ls",
+					"--log-file",
+					"/tmp/robotframework_ls.log",
+				} or { "robotframework_ls", "--log-file", "/tmp/robotframework_ls.log" },
+				filetypes = { "robot", "resource", "tavern" },
+				root_dir = require("lspconfig.util").root_pattern(".git", "robot.yaml", "pyproject.toml", "."),
+				settings = {
+					robot = {
+						python = {
+							interpreter = vim.env.VIRTUAL_ENV and vim.env.VIRTUAL_ENV .. "/bin/python" or "python",
+						},
+					},
+				},
+			},
 		}
 
 		-- Ensure the servers and tools above are installed
