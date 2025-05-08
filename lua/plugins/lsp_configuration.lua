@@ -21,6 +21,7 @@ local mason_ensure_is_installed = {
 	"robotframework-lsp",
 	"openscad-lsp",
 	"json-lsp",
+	"lemminx",
 }
 
 return {

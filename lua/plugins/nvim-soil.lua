@@ -24,7 +24,7 @@ return {
 			-- return "xdg-open " .. img
 			--return "nsxiv -b " .. img
 			execute_to_open = function(img)
-				return "feh " .. img
+				return "feh --zoom 150% " .. img
 			end,
 		},
 	},
