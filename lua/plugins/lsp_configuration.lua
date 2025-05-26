@@ -22,6 +22,7 @@ local mason_ensure_is_installed = {
 	"openscad-lsp",
 	"json-lsp",
 	"lemminx",
+	"tree-sitter-cli", --needed when editing .tex files
 }
 
 return {
