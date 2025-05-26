@@ -35,6 +35,7 @@ require("lazy").setup({
 	require("plugins.nvim-soil"),
 	require("plugins.nvim-ghost"),
 	require("plugins.iron"),
+	{ "norcalli/nvim-colorizer.lua" },
 }, {
 	git = {
 		timeout = 300, -- kill processes that take more than 5 minutes
