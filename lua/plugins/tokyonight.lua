@@ -48,5 +48,13 @@ return {
 			--sidebars = "transparent",
 			--floats = "transparent",
 		},
+		on_highlights = function(hl, colors)
+			hl.LineNrAbove = {
+				fg = "#c0caf5",
+			}
+			hl.LineNrBelow = {
+				fg = "#c0caf5",
+			}
+		end,
 	},
 }
