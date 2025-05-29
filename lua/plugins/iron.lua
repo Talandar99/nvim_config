@@ -25,7 +25,7 @@ return {
 				repl_filetype = function(bufnr, ft)
 					return ft
 				end,
-				repl_open_cmd = view.right(150),
+				repl_open_cmd = view.right(80),
 			},
 			keymaps = {
 				toggle_repl = "<space>ir",
