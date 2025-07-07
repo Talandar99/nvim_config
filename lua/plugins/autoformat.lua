@@ -35,8 +35,18 @@ return { -- Autoformat
 			-- Conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },
 			--
+			--
+			terraform = { "tofu_fmt" },
+			tf = { "tofu_fmt" },
 			-- You can use 'stop_after_first' to run the first available formatter from the list
 			-- javascript = { "prettierd", "prettier", stop_after_first = true },
+		},
+		formatters = {
+			tofu_fmt = {
+				command = "tofu",
+				args = { "fmt", "-" },
+				stdin = true,
+			},
 		},
 	},
 

@@ -23,6 +23,7 @@ local mason_ensure_is_installed = {
 	"json-lsp",
 	"lemminx",
 	"tree-sitter-cli", --needed when editing .tex files
+	"terraform-ls", --terraform
 }
 
 return {
