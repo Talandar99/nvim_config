@@ -21,7 +21,7 @@ require("lazy").setup({
 	--new plugins
 	require("plugins.nvim-treesitter-context"),
 	require("plugins.undotree"),
-	require("plugins.orgmode"),
+	--require("plugins.orgmode"),
 	require("plugins.render-markdown"),
 	require("plugins.oil"),
 	require("plugins.autopairs"),
@@ -32,7 +32,7 @@ require("lazy").setup({
 	require("plugins.harpoon"),
 	require("plugins.vim-dadbod-ui"),
 	require("plugins.flutter"),
-	require("plugins.nvim-soil"),
+	--require("plugins.nvim-soil"),
 	require("plugins.nvim-ghost"),
 	require("plugins.iron"),
 	{ "norcalli/nvim-colorizer.lua" },

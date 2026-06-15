@@ -49,12 +49,12 @@ return {
 						folder_level = 2,
 					},
 					ui = {
+						border = "rounded",
 						code_action = "",
 					},
 				})
 			end,
 		},
-
 		-- Allows extra capabilities provided by nvim-cmp
 		"hrsh7th/cmp-nvim-lsp",
 	},
@@ -149,10 +149,12 @@ return {
 				--
 				-- When you move your cursor, the highlights will be cleared (the second autocommand).
 				--
+				--
 				map("K", "<cmd>:Lspsaga hover_doc<CR>", "Hover Doc", { "n", "x" })
 				map("<leader>D", "<cmd>:Lspsaga goto_type_definition<CR>", "Type [D]efinition", { "n", "x" })
 				map("gd", "<cmd>:Lspsaga goto_definition<CR>", "[G]oto [D]efinition", { "n", "x" })
 				--map("<leader>rn", "<cmd>:Lspsaga rename<CR>", "[R]e[n]ame", { "n", "x" })
+				--
 				map("<leader>ca", "<cmd>:Lspsaga code_action<CR>", "[C]ode [A]ction", { "n", "x" })
 				map("<leader>co", "<cmd>:Lspsaga outgoing_calls<CR>", "[C]ode [O]utgoing Calls", { "n", "x" })
 				map("<leader>ci", "<cmd>:Lspsaga incoming_calls<CR>", "[C]ode [I]ncoming Calls", { "n", "x" })

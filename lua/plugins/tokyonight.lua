@@ -18,6 +18,8 @@ return {
 		vim.cmd.hi("TreesitterContextLineNumber gui=bold guifg=#82aaff")
 		vim.cmd.hi("TreesitterContextSeparator gui=bold guifg=#82aaff")
 		vim.cmd.hi("TreesitterContext guibg=none")
+		vim.api.nvim_set_hl(0, "CmpSolidBg", { bg = "#1a1b26" })
+		vim.api.nvim_set_hl(0, "CmpSolidBorder", { fg = "#2ac3de", bg = "#1a1b26" })
 
 		--lsp windows borders
 		--local _border = "single"

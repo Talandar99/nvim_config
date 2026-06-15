@@ -40,7 +40,6 @@ return { -- Autocompletion
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		local cmp_buffer = require("cmp_buffer")
-
 		luasnip.config.setup({})
 		cmp.setup({
 			snippet = {
@@ -117,8 +116,14 @@ return { -- Autocompletion
 			},
 
 			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
+				completion = cmp.config.window.bordered({
+					border = "rounded",
+					winhighlight = "Normal:CmpSolidBg,FloatBorder:CmpSolidBorder,CursorLine:PmenuSel,Search:None",
+				}),
+				documentation = cmp.config.window.bordered({
+					border = "rounded",
+					winhighlight = "Normal:CmpSolidBg,FloatBorder:CmpSolidBorder,CursorLine:PmenuSel,Search:None",
+				}),
 			},
 		})
 

@@ -42,14 +42,14 @@ vim.api.nvim_create_autocmd("BufRead", {
 
 --automaticly disable indent_blankline if .org
 --automaticly enable conceallevel if .org
-vim.api.nvim_create_autocmd("BufRead", {
-	pattern = "*.org",
-	callback = function()
-		vim.api.nvim_command("set nofoldenable")
-		vim.api.nvim_command("IBLDisable")
-		vim.opt.conceallevel = 2
-	end,
-})
+--vim.api.nvim_create_autocmd("BufRead", {
+--	pattern = "*.org",
+--	callback = function()
+--		vim.api.nvim_command("set nofoldenable")
+--		vim.api.nvim_command("IBLDisable")
+--		vim.opt.conceallevel = 2
+--	end,
+--})
 
 --automaticly enable conceallevel if .md
 vim.api.nvim_create_autocmd("BufRead", {
@@ -120,4 +120,9 @@ vim.api.nvim_create_autocmd("BufRead", {
 	callback = function()
 		vim.keymap.set({ "n", "x" }, "<leader>cs", "<cmd>Soil<CR>", { noremap = true, desc = "[C]ode run [S]oil" })
 	end,
+})
+--calcurse
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "/tmp/calcurse*", "*/workspace/notes/calcurse/notes/*" },
+	command = "set filetype=markdown",
 })
