@@ -1,3 +1,25 @@
+local function drag_with_dragon()
+	local oil = require("oil")
+	local dir = oil.get_current_dir()
+	local range = require("oil.util").get_visual_range()
+	local paths = {}
+	local first = range and range.start_lnum or vim.api.nvim_win_get_cursor(0)[1]
+	local last = range and range.end_lnum or first
+
+	for line = first, last do
+		local entry = oil.get_entry_on_line(0, line)
+		if entry then
+			paths[#paths + 1] = vim.fs.joinpath(dir, entry.name)
+		end
+	end
+
+	if #paths > 0 then
+		local command = { "dragon", "--all", "--and-exit" }
+		vim.list_extend(command, paths)
+		vim.fn.jobstart(command, { detach = true })
+	end
+end
+
 return {
 	"stevearc/oil.nvim",
 	---@module 'oil'
@@ -63,6 +85,7 @@ return {
 		-- See :help oil-actions for a list of all available actions
 		keymaps = {
 			["g?"] = "actions.show_help",
+			["yd"] = { callback = drag_with_dragon, desc = "Drag entries with Dragon", mode = { "n", "x" } },
 			["<CR>"] = "actions.select",
 			["<C-_>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
 			--["<C-h>"] = {

@@ -1,3 +1,9 @@
-#+title: nvim_config
-New neovim configuration based on lazy.nvim 
+#+title: Neovim configuration
+
+
+* Required by configured features
+
+- =git=: lazy.nvim plugin installation and vim-fugitive.
+- =chafa=: image previews through Focal.
+- =dragon= and =xclip=: Oil drag mapping (=yd=) and X11 clipboard support.
 
