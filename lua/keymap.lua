@@ -41,7 +41,6 @@ vim.keymap.set("n", "<leader>q", "<cmd>:q<CR>", { noremap = true, desc = "[Q]uit
 -- open_configs
 vim.keymap.set("n", "<leader>|", "<cmd>:e ~/.config/nvim<CR>", { noremap = true, desc = "Open Neovim Configuration" })
 -- open notes
---vim.keymap.set("n", "<leader>on", "<cmd>:e ~/workspace/notes<CR>", { noremap = true, desc = "orgmode notes" })
 -- open vim fugitive
 vim.keymap.set("n", "<leader>gg", "<cmd>:0G<CR>", { noremap = true, desc = "[G]it Menu" })
 vim.keymap.set("n", "<leader>gl", "<cmd>:Git pull<CR>", { noremap = true, desc = "[G]it Pu[l]l" })

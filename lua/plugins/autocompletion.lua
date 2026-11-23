@@ -111,7 +111,6 @@ return { -- Autocompletion
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "path" },
-				{ name = "orgmode" },
 				{ name = "buffer" }, -- geting completion from current buffer (everything you type)
 			},
 
