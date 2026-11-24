@@ -6,7 +6,7 @@ return {
 			current_browser = "oil",
 
 			-- Ask for confirmation before executing commands
-			ask_confirmation = true,
+			ask_confirmation = false,
 
 			-- Use custom input UI instead of vim.ui.input
 			--use_custom_ui = true,
