@@ -1,0 +1,8 @@
+#!/bin/sh
+
+target=${1:-"$HOME"}
+if [ -f "$target" ]; then
+	exec alacritty -e nvim -c Oil "$target"
+fi
+
+exec alacritty -e nvim -- "$target"

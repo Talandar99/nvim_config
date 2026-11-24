@@ -9,6 +9,12 @@ require("lazy").setup({
 	require("plugins.gitsigns"),
 	require("plugins.which-key"),
 	require("plugins.telescope"),
+	{
+		"stevearc/dressing.nvim",
+		opts = {
+			select = { enabled = false },
+		},
+	},
 	-- LSP Plugins --
 	require("plugins.lazydev"),
 	require("plugins.lsp_configuration"),
@@ -34,6 +40,7 @@ require("lazy").setup({
 	--require("plugins.nvim-soil"),
 	require("plugins.iron"),
 	require("plugins.run-nvim"),
+	{ "norcalli/nvim-colorizer.lua" },
 }, {
 	git = {
 		timeout = 300, -- kill processes that take more than 5 minutes

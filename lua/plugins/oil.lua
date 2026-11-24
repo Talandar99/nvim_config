@@ -20,6 +20,180 @@ local function drag_with_dragon()
 	end
 end
 
+local function open_external()
+	local oil = require("oil")
+	local entry = oil.get_cursor_entry()
+	local dir = oil.get_current_dir()
+	if not entry or not dir then
+		return
+	end
+
+	local path = vim.fs.joinpath(dir, entry.name)
+	local extension = vim.fn.fnamemodify(path, ":e"):lower()
+	if extension == "stl" or extension == "3mf" then
+		vim.ui.open(path, { cmd = { "prusa-slicer" } })
+		return
+	end
+
+	require("oil.actions").open_external.callback()
+end
+
+local function list_usb_partitions()
+	local result = vim.system({
+		"lsblk",
+		"--json",
+		"--paths",
+		"--output",
+		"NAME,TYPE,TRAN,RM,MOUNTPOINTS,LABEL,FSTYPE",
+	}, { text = true }):wait()
+
+	if result.code ~= 0 then
+		return nil, result.stderr
+	end
+
+	local devices = {}
+	local function collect(blockdevices, parent_is_usb)
+		for _, device in ipairs(blockdevices) do
+			local is_usb = parent_is_usb or device.tran == "usb" or device.rm
+			if device.children and #device.children > 0 then
+				collect(device.children, is_usb)
+			elseif is_usb and device.fstype and device.fstype ~= "swap" and device.fstype ~= "crypto_LUKS" then
+				local mountpoints = device.mountpoints or {}
+				devices[#devices + 1] = {
+					name = device.name,
+					label = device.label,
+					mountpoint = mountpoints[1],
+				}
+			end
+		end
+	end
+
+	collect(vim.json.decode(result.stdout).blockdevices, false)
+	return devices
+end
+
+local function operate_usb(device)
+	local unmount = device.mountpoint ~= nil
+	local command = { "udisksctl", unmount and "unmount" or "mount", "-b", device.name }
+	vim.system(command, { text = true }, function(result)
+		vim.schedule(function()
+			if result.code ~= 0 then
+				vim.notify(vim.trim(result.stderr), vim.log.levels.ERROR)
+				return
+			end
+
+			if unmount then
+				local oil = require("oil")
+				local current_dir = oil.get_current_dir()
+				local mountpoint = vim.fs.normalize(device.mountpoint)
+				current_dir = current_dir and vim.fs.normalize(current_dir)
+				if
+					current_dir
+					and (current_dir == mountpoint or current_dir:sub(1, #mountpoint + 1) == mountpoint .. "/")
+				then
+					oil.open(vim.fs.dirname(mountpoint))
+				end
+
+				vim.notify("Unmounted " .. device.name, vim.log.levels.INFO)
+				return
+			end
+
+			local mounted_devices = list_usb_partitions()
+			for _, mounted_device in ipairs(mounted_devices or {}) do
+				if mounted_device.name == device.name and mounted_device.mountpoint then
+					require("oil").open(mounted_device.mountpoint)
+					return
+				end
+			end
+			vim.notify("Mounted " .. device.name, vim.log.levels.INFO)
+		end)
+	end)
+end
+
+local function select_usb_device(devices)
+	vim.ui.select(devices, {
+		prompt = "Mount or unmount USB",
+		format_item = function(device)
+			local name = device.label or device.name
+			local status = device.mountpoint and "mounted at " .. device.mountpoint or "not mounted"
+			return string.format("%s (%s): %s", name, device.name, status)
+		end,
+	}, function(device)
+		if device then
+			operate_usb(device)
+		end
+	end)
+end
+
+local function manage_usb()
+	local devices, err = list_usb_partitions()
+	if not devices then
+		vim.notify(vim.trim(err), vim.log.levels.ERROR)
+		return
+	end
+	if #devices == 0 then
+		vim.notify("No USB filesystems found", vim.log.levels.INFO)
+		return
+	end
+
+	select_usb_device(devices)
+end
+
+local function load_oil_bookmarks()
+	local path = vim.fn.stdpath("data") .. "/oil-bookmarks.json"
+	if vim.fn.filereadable(path) == 0 then
+		return {}
+	end
+	return vim.json.decode(table.concat(vim.fn.readfile(path), "\n"))
+end
+
+local function save_oil_bookmarks(bookmarks)
+	local path = vim.fn.stdpath("data") .. "/oil-bookmarks.json"
+	vim.fn.writefile({ vim.json.encode(bookmarks) }, path)
+end
+
+local function toggle_oil_bookmark()
+	local path = require("oil").get_current_dir()
+	if not path then
+		return
+	end
+	path = vim.fs.normalize(path)
+
+	local bookmarks = load_oil_bookmarks()
+	for index, bookmark in ipairs(bookmarks) do
+		if bookmark == path then
+			table.remove(bookmarks, index)
+			save_oil_bookmarks(bookmarks)
+			vim.notify("Removed Oil bookmark: " .. path, vim.log.levels.INFO)
+			return
+		end
+	end
+
+	bookmarks[#bookmarks + 1] = path
+	save_oil_bookmarks(bookmarks)
+	vim.notify("Added Oil bookmark: " .. path, vim.log.levels.INFO)
+end
+
+local function open_oil_bookmarks()
+	local bookmarks = load_oil_bookmarks()
+	if #bookmarks == 0 then
+		vim.notify("No Oil bookmarks", vim.log.levels.INFO)
+		return
+	end
+
+	vim.ui.select(bookmarks, {
+		prompt = "Oil bookmarks",
+		format_item = function(path)
+			local name = vim.fn.fnamemodify(path, ":t")
+			return string.format("%s (%s)", name ~= "" and name or path, path)
+		end,
+	}, function(path)
+		if path then
+			require("oil").open(path)
+		end
+	end)
+end
+
 return {
 	"stevearc/oil.nvim",
 	---@module 'oil'
@@ -85,6 +259,11 @@ return {
 		-- See :help oil-actions for a list of all available actions
 		keymaps = {
 			["g?"] = "actions.show_help",
+			["m"] = { callback = require("oil-marks").toggle, desc = "Toggle file mark" },
+			["M"] = { callback = require("oil-marks").clear, desc = "Clear file marks" },
+			["<leader>m"] = { callback = manage_usb, desc = "Mount or unmount USB" },
+			["<leader>ba"] = { callback = toggle_oil_bookmark, desc = "Toggle Oil bookmark" },
+			["<leader>bb"] = { callback = open_oil_bookmarks, desc = "Open Oil bookmarks" },
 			["yd"] = { callback = drag_with_dragon, desc = "Drag entries with Dragon", mode = { "n", "x" } },
 			["<CR>"] = "actions.select",
 			["<C-_>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
@@ -102,7 +281,7 @@ return {
 			["`"] = "actions.cd",
 			["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory", mode = "n" },
 			["gs"] = "actions.change_sort",
-			["gx"] = "actions.open_external",
+			["gx"] = { callback = open_external, desc = "Open entry in external program" },
 			["g."] = "actions.toggle_hidden",
 			["g\\"] = "actions.toggle_trash",
 		},

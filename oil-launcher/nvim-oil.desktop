@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Neovim Oil
+Exec="@OIL_LAUNCHER@" %f
+Terminal=false
+NoDisplay=true
+MimeType=inode/directory;

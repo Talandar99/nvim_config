@@ -68,3 +68,6 @@ vim.keymap.set(
 	"<cmd>:setfiletype python<CR><cmd>:LspStart pylsp<CR>",
 	{ noremap = true, desc = "[L]anguage [P]ython " }
 )
+-- run nvim
+vim.keymap.set({ "v", "n" }, "<leader>x", ":RunFile<CR>", { desc = "(Run.nvim) Run Async" })
+vim.keymap.set({ "v", "n" }, "<leader>rs", ":RunStop<CR>", { desc = "(Run.nvim) Stop job" })

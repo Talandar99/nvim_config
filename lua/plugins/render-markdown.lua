@@ -4,18 +4,23 @@ return {
 	-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
 	config = function(_, opts)
-		require("nvim-treesitter.query_predicates")
-		require("vim.treesitter.query").add_directive("set-lang-from-info-string!", function(match, _, bufnr, predicate, metadata)
-			local captured = match[predicate[2]]
-			local node = type(captured) == "table" and captured[1] or captured
-			if not node then
-				return
-			end
+		require("vim.treesitter.query").add_directive(
+			"set-lang-from-info-string!",
+			function(match, _, bufnr, predicate, metadata)
+				local captured = match[predicate[2]]
+				local node = type(captured) == "table" and captured[1] or captured
+				if not node then
+					return
+				end
 
-			local alias = vim.treesitter.get_node_text(node, bufnr):lower()
-			local aliases = { ex = "elixir", pl = "perl", sh = "bash", uxn = "uxntal", ts = "typescript" }
-			metadata["injection.language"] = vim.filetype.match({ filename = "a." .. alias }) or aliases[alias] or alias
-		end, { force = true })
+				local alias = vim.treesitter.get_node_text(node, bufnr):lower()
+				local aliases = { ex = "elixir", pl = "perl", sh = "bash", uxn = "uxntal", ts = "typescript" }
+				metadata["injection.language"] = vim.filetype.match({ filename = "a." .. alias })
+					or aliases[alias]
+					or alias
+			end,
+			{ force = true }
+		)
 		require("render-markdown").setup(opts)
 	end,
 	---@module 'render-markdown'

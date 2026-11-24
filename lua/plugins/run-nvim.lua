@@ -26,7 +26,7 @@ return {
 			open_qflist_async = false,
 
 			-- Focus output window after run: "never" | "on_error" | "always"
-			focus_output = "never",
+			focus_output = "always",
 
 			-- Highlight full stderr lines red in the output buffer (default: false)
 			-- When false, only the matched file:line:col span is highlighted.
@@ -58,34 +58,51 @@ return {
 
 			-- Customize default actions for specific file types
 			default_actions = {
-				-- Example: custom Python command
-				--[".py"] = {
-				--		command = "python %f",
-				--		description = "Run Python module",
-				--	},
-				-- Add your own commands here
+				[".tar.xz"] = {
+					command = "tar xJvf %1 -C %d",
+					description = "Extracts xz archive",
+				},
+				dir = {
+					command = "tar cJvf %1.tar.xz -C %d %f",
+					description = "Creates xz archive",
+				},
+				multiple = {
+					command = "tar cJvf %1.tar.xz -C %d %f",
+					description = "Creates xz archive",
+				},
 			},
-			action_function = function(file_list, curr_dir)
-				return "", false
+			action_function = function(file_list, _curr_dir)
+				local marked = require("oil-marks").get()
+				if #marked == 0 then
+					return
+				end
 
-				--				-- return <cmd>, <requires_completion>
-				--				if #file_list == 1 and file_list[1] == "Makefile" then
-				--					return "make -k", false
-				--				end
-				--
-				--				local has_go_marker = false
-				--				local only_go_project_files = #file_list > 0
-				--				for _, file in ipairs(file_list) do
-				--					if file == "go.mod" or file == "go.sum" then
-				--						has_go_marker = true
-				--					elseif not file:match("%.go$") then
-				--						only_go_project_files = false
-				--					end
-				--				end
-				--				if has_go_marker and only_go_project_files then
-				--					return "go run .", false
-				--				end
-				--				return nil, false
+				local selected = {}
+				for _, name in ipairs(file_list) do
+					selected[name] = true
+				end
+				for _, name in ipairs(marked) do
+					selected[name] = true
+				end
+
+				local oil = require("oil")
+				local bufnr = vim.api.nvim_get_current_buf()
+				local merged = {}
+				local seen = {}
+				for line = 1, vim.api.nvim_buf_line_count(bufnr) do
+					local entry = oil.get_entry_on_line(bufnr, line)
+					if entry and entry.name and selected[entry.name] and not seen[entry.name] then
+						seen[entry.name] = true
+						merged[#merged + 1] = entry.name
+					end
+				end
+
+				for i = #file_list, 1, -1 do
+					file_list[i] = nil
+				end
+				for i, name in ipairs(merged) do
+					file_list[i] = name
+				end
 			end,
 		})
 	end,

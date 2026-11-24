@@ -23,23 +23,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
---automaticly add debuger shortkey if file is rust file
-vim.api.nvim_create_autocmd("BufRead", {
-	pattern = "*.rs",
-	callback = function()
-		vim.keymap.set("n", "<F5>", "<cmd>RustDebuggables<CR>")
-	end,
-})
---automaticly add debuger shortkey if file is python file
-vim.api.nvim_create_autocmd("BufRead", {
-	pattern = "*.py",
-	callback = function()
-		vim.keymap.set("n", "<F5>", function()
-			require("dap").continue()
-		end)
-	end,
-})
-
 --automaticly disable indent_blankline if .org
 --automaticly enable conceallevel if .org
 --vim.api.nvim_create_autocmd("BufRead", {
@@ -105,20 +88,6 @@ vim.api.nvim_create_autocmd("BufRead", {
 	pattern = "*.json",
 	callback = function()
 		vim.api.nvim_command("set conceallevel=0")
-	end,
-})
---add soil autocommand when editing plantuml
-vim.api.nvim_create_autocmd("BufRead", {
-	pattern = "*.plantuml",
-	callback = function()
-		vim.keymap.set({ "n", "x" }, "<leader>cs", "<cmd>Soil<CR>", { noremap = true, desc = "[C]ode run [S]oil" })
-	end,
-})
---add soil autocommand when editing plantuml
-vim.api.nvim_create_autocmd("BufRead", {
-	pattern = "*.puml",
-	callback = function()
-		vim.keymap.set({ "n", "x" }, "<leader>cs", "<cmd>Soil<CR>", { noremap = true, desc = "[C]ode run [S]oil" })
 	end,
 })
 --calcurse
