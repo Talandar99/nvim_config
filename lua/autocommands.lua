@@ -34,11 +34,11 @@ vim.opt.rtp:prepend(lazypath)
 --	end,
 --})
 
---automaticly enable conceallevel if .md
-vim.api.nvim_create_autocmd("BufRead", {
+-- Show Markdown syntax, including fenced code delimiters.
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.md",
 	callback = function()
-		vim.opt.conceallevel = 2
+		vim.opt_local.conceallevel = 0
 	end,
 })
 --custom highlight for zenscript

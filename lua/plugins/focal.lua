@@ -2,9 +2,10 @@ return {
 	"hmdfrds/focal.nvim",
 	event = "VeryLazy",
 	config = function(_, opts)
-		local focal = require("focal")
-		focal.setup(opts)
-		local oil_preview_active = false
+	local focal = require("focal")
+	focal.setup(opts)
+	focal.disable()
+	local oil_preview_active = false
 		local focal_was_enabled = false
 		local function sync_oil_preview()
 			local oil = package.loaded["oil.util"]

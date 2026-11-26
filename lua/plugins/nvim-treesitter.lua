@@ -11,6 +11,7 @@ local parsers = {
 	"vim",
 	"vimdoc",
 	"json",
+	"yaml",
 	"python",
 	"make",
 	"typescript",

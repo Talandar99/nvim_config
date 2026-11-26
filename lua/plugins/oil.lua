@@ -38,6 +38,44 @@ local function open_external()
 	require("oil.actions").open_external.callback()
 end
 
+local oil_column_modes = {
+	{ "icon" },
+	{ "icon", "size", "mtime" },
+	{ "icon", "permissions" },
+}
+local oil_column_mode = 1
+
+local function cycle_oil_columns()
+	oil_column_mode = oil_column_mode % #oil_column_modes + 1
+	require("oil").set_columns(oil_column_modes[oil_column_mode])
+end
+
+local oil_preview_mode = "off"
+
+local function cycle_oil_preview_mode()
+	local oil = require("oil")
+	local focal = require("focal")
+	local preview_win = require("oil.util").get_preview_win()
+
+	if oil_preview_mode == "focal" then
+		if not oil.get_cursor_entry() then
+			return
+		end
+		focal.disable()
+		require("oil.actions").preview.callback()
+		oil_preview_mode = "oil"
+	elseif oil_preview_mode == "oil" then
+		if preview_win then
+			vim.api.nvim_win_close(preview_win, true)
+		end
+		focal.disable()
+		oil_preview_mode = "off"
+	else
+		focal.enable()
+		oil_preview_mode = "focal"
+	end
+end
+
 local function list_usb_partitions()
 	local result = vim.system({
 		"lsblk",
@@ -206,7 +244,6 @@ return {
 		-- See :help oil-columns
 		columns = {
 			"icon",
-			"permissions",
 			--"size",
 			--"mtime",
 		},
@@ -259,11 +296,12 @@ return {
 		-- See :help oil-actions for a list of all available actions
 		keymaps = {
 			["g?"] = "actions.show_help",
+			["<A-z>"] = { callback = cycle_oil_columns, desc = "Cycle Oil columns" },
 			["m"] = { callback = require("oil-marks").toggle, desc = "Toggle file mark" },
 			["M"] = { callback = require("oil-marks").clear, desc = "Clear file marks" },
-			["<leader>m"] = { callback = manage_usb, desc = "Mount or unmount USB" },
-			["<leader>ba"] = { callback = toggle_oil_bookmark, desc = "Toggle Oil bookmark" },
-			["<leader>bb"] = { callback = open_oil_bookmarks, desc = "Open Oil bookmarks" },
+			["<leader>om"] = { callback = manage_usb, desc = "Mount or unmount USB" },
+			["<leader>oa"] = { callback = toggle_oil_bookmark, desc = "Toggle Oil bookmark" },
+			["<leader>ob"] = { callback = open_oil_bookmarks, desc = "Open Oil bookmarks" },
 			["yd"] = { callback = drag_with_dragon, desc = "Drag entries with Dragon", mode = { "n", "x" } },
 			["<CR>"] = "actions.select",
 			["<C-_>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
@@ -273,14 +311,14 @@ return {
 			--	desc = "Open the entry in a horizontal split",
 			--},
 			["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
-			["<C-p>"] = "actions.preview",
+			["<C-p>"] = { callback = cycle_oil_preview_mode, desc = "Cycle Focal and Oil previews" },
 			["<C-c>"] = "actions.close",
 			["<C-r>"] = "actions.refresh",
 			["-"] = "actions.parent",
 			["_"] = "actions.open_cwd",
 			["`"] = "actions.cd",
 			["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory", mode = "n" },
-			["gs"] = "actions.change_sort",
+			["<leader>os"] = "actions.change_sort",
 			["gx"] = { callback = open_external, desc = "Open entry in external program" },
 			["g."] = "actions.toggle_hidden",
 			["g\\"] = "actions.toggle_trash",
@@ -307,7 +345,7 @@ return {
 				-- sort order can be "asc" or "desc"
 				-- see :help oil-columns to see which columns are sortable
 				{ "type", "asc" },
-				{ "name", "asc" },
+				{ "mtime", "desc" },
 			},
 		},
 		-- Extra arguments to pass to SCP when moving/copying files over SSH

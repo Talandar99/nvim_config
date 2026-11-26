@@ -42,6 +42,7 @@ return {
 			},
 		},
 		code = {
+			enabled = false,
 			language = true,
 			disable_background = true,
 			enabled = true,
