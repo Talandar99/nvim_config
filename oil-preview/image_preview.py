@@ -13,6 +13,7 @@ subprocess.run(
     [
         "chafa",
         "--format=symbols",
+        "--symbols=block+border+space-wide-inverted",
         "--colors=full",
         "--animate=off",
         f"--size={width}x{height}",

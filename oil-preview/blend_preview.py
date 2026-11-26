@@ -42,6 +42,7 @@ subprocess.run(
     [
         "chafa",
         "--format=symbols",
+        "--symbols=block+border+space-wide-inverted",
         "--colors=full",
         "--color-space=din99d",
         f"--size={width}x{height}",
