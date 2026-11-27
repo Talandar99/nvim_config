@@ -305,6 +305,7 @@ return {
 			["yd"] = { callback = drag_with_dragon, desc = "Drag entries with Dragon", mode = { "n", "x" } },
 			["<CR>"] = "actions.select",
 			["<C-_>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
+			["<C-S-->"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
 			--["<C-h>"] = {
 			--	"actions.select",
 			--	opts = { horizontal = true },
